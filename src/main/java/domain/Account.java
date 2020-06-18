@@ -12,6 +12,11 @@ class Account {
     }
 
     void withdrawal(Amount amount) {
-        balance = new Amount(balance.value() - amount.value());
+        if (hasEnoughMoney(amount))
+            balance = new Amount(balance.value() - amount.value());
+    }
+
+    private boolean hasEnoughMoney(Amount amount) {
+        return balance.value() >= amount.value();
     }
 }
