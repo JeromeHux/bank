@@ -10,4 +10,8 @@ class Account {
     void deposit(Amount amount) {
         balance = new Amount(balance.value() + amount.value());
     }
+
+    void withdrawal(Amount amount) {
+        balance = new Amount(balance.value() - amount.value());
+    }
 }

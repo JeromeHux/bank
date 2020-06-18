@@ -28,6 +28,18 @@ public class AccountTest {
         assertThat(account.balance()).isEqualTo(globalAmount);
     }
 
+    @Test
+    public void retrieve_money_from_account() {
+        Amount initialAmount = Amount.of(1000);
+        Account account = accountWith(initialAmount);
+        Amount amount = Amount.of(300);
+
+        account.withdrawal(amount);
+
+        double globalAmount = initialAmount.value() - amount.value();
+        assertThat(account.balance()).isEqualTo(globalAmount);
+    }
+
     private Account emptyAccount() {
         return new Account();
     }
