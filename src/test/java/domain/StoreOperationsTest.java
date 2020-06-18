@@ -23,7 +23,8 @@ public class StoreOperationsTest {
 
         account.deposit(amount, date);
 
-        verify(history).addOperation(Operation.of(amount, date));
+        Amount balanceAfterOperation = Amount.of(300);
+        verify(history).addHistoryLine(Operation.of(amount, date), balanceAfterOperation);
     }
 
     @Test
@@ -35,6 +36,7 @@ public class StoreOperationsTest {
 
         account.withdrawal(amount, date);
 
-        verify(history).addOperation(Operation.of(Amount.of(-300), date));
+        Amount balanceAfterOperation = Amount.of(500);
+        verify(history).addHistoryLine(Operation.of(Amount.of(-300), date), balanceAfterOperation);
     }
 }

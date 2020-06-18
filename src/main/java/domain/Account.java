@@ -17,14 +17,14 @@ class Account {
     void deposit(Amount amount, LocalDate date) {
         if (isPositive(amount)) {
             balance = new Amount(balance.value() + amount.value());
-            history.addOperation(Operation.of(amount, date));
+            history.addHistoryLine(Operation.of(amount, date), balance);
         }
     }
 
     void withdrawal(Amount amount, LocalDate date) {
         if (hasEnoughMoney(amount) && isPositive(amount)) {
             balance = new Amount(balance.value() - amount.value());
-            history.addOperation(Operation.of(Amount.of(-amount.value()), date));
+            history.addHistoryLine(Operation.of(Amount.of(-amount.value()), date), balance);
         }
     }
 
