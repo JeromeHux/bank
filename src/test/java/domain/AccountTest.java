@@ -2,17 +2,20 @@ package domain;
 
 import org.junit.Test;
 
+import java.time.LocalDate;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountTest {
     private final static Amount AMOUNT = Amount.of(300);
     private final static Amount NEGATIVE_AMOUNT = Amount.of(-300);
+    private final LocalDate date = LocalDate.of(2020, 6, 6);
 
     @Test
     public void add_money_on_empty_account() {
         Account account = emptyAccount();
 
-        account.deposit(AMOUNT);
+        account.deposit(AMOUNT, date);
 
         assertThat(account.balance()).isEqualTo(AMOUNT.value());
     }
@@ -22,7 +25,7 @@ public class AccountTest {
         Amount initialAmount = Amount.of(1000);
         Account account = accountWith(initialAmount);
 
-        account.deposit(AMOUNT);
+        account.deposit(AMOUNT, date);
 
         double globalAmount = initialAmount.value() + AMOUNT.value();
         assertThat(account.balance()).isEqualTo(globalAmount);
@@ -33,7 +36,7 @@ public class AccountTest {
         Amount initialAmount = Amount.of(1000);
         Account account = accountWith(initialAmount);
 
-        account.deposit(NEGATIVE_AMOUNT);
+        account.deposit(NEGATIVE_AMOUNT, date);
 
         assertThat(account.balance()).isEqualTo(initialAmount.value());
     }
@@ -43,7 +46,7 @@ public class AccountTest {
         Amount initialAmount = Amount.of(1000);
         Account account = accountWith(initialAmount);
 
-        account.withdrawal(AMOUNT);
+        account.withdrawal(AMOUNT, date);
 
         double globalAmount = initialAmount.value() - AMOUNT.value();
         assertThat(account.balance()).isEqualTo(globalAmount);
@@ -54,7 +57,7 @@ public class AccountTest {
         Amount initialAmount = Amount.of(100);
         Account account = accountWith(initialAmount);
 
-        account.withdrawal(AMOUNT);
+        account.withdrawal(AMOUNT, date);
 
         assertThat(account.balance()).isEqualTo(initialAmount.value());
     }
@@ -64,18 +67,21 @@ public class AccountTest {
         Amount initialAmount = Amount.of(1000);
         Account account = accountWith(initialAmount);
 
-        account.withdrawal(NEGATIVE_AMOUNT);
+        account.withdrawal(NEGATIVE_AMOUNT, date);
 
         assertThat(account.balance()).isEqualTo(initialAmount.value());
     }
 
     private Account emptyAccount() {
-        return new Account();
+        History history = new History();
+        return new Account(history);
     }
 
     private Account accountWith(Amount amount) {
-        Account account = new Account();
-        account.deposit(amount);
+        History history = new History();
+
+        Account account = new Account(history);
+        account.deposit(amount, date);
         return account;
     }
 

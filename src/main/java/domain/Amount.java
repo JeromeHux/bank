@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 class Amount {
     private final double value;
 
@@ -13,5 +15,18 @@ class Amount {
 
     double value() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Amount amount = (Amount) o;
+        return Double.compare(amount.value, value) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
