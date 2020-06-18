@@ -8,12 +8,17 @@ class Account {
     }
 
     void deposit(Amount amount) {
-        balance = new Amount(balance.value() + amount.value());
+        if (isPositive(amount))
+            balance = new Amount(balance.value() + amount.value());
     }
 
     void withdrawal(Amount amount) {
-        if (hasEnoughMoney(amount))
+        if (hasEnoughMoney(amount) && isPositive(amount))
             balance = new Amount(balance.value() - amount.value());
+    }
+
+    private boolean isPositive(Amount amount) {
+        return amount.value() > 0;
     }
 
     private boolean hasEnoughMoney(Amount amount) {
