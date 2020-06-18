@@ -11,6 +11,10 @@ public class HistoryLine {
         this.balance = balance;
     }
 
+    String printLine() {
+        return operation.toString() + " | " + balance.value();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,7 +26,7 @@ public class HistoryLine {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(balance, operation);
     }
+
 }

@@ -7,7 +7,7 @@ class History {
     private List<HistoryLine> historyLines = new LinkedList<>();
 
     void addHistoryLine(Operation operation, Amount balance) {
-        historyLines.add(new HistoryLine(operation, balance));
+        historyLines.add(0,new HistoryLine(operation, balance));
     }
 
     List<HistoryLine> historyLines() {

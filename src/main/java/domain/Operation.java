@@ -17,6 +17,12 @@ public class Operation {
     }
 
     @Override
+    public String toString() {
+        String operation = (amount.value() > 0) ? "deposit" : "withdrawal";
+        return operation + " | " + date.toString() + " | " + amount.value();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -27,7 +33,6 @@ public class Operation {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(amount, date);
     }
 }
