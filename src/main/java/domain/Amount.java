@@ -33,4 +33,8 @@ class Amount {
     boolean isPositive() {
         return value() > 0;
     }
+
+    boolean hasEnoughMoney(Amount amount) {
+        return value() >= amount.value();
+    }
 }

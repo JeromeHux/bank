@@ -22,14 +22,10 @@ class Account {
     }
 
     void withdrawal(Amount amount, LocalDate date) {
-        if (hasEnoughMoney(amount) && amount.isPositive()) {
+        if (balance.hasEnoughMoney(amount) && amount.isPositive()) {
             balance = new Amount(balance.value() - amount.value());
             history.addHistoryLine(Operation.of(Amount.of(-amount.value()), date), balance);
         }
-    }
-
-    boolean hasEnoughMoney(Amount amount) {
-        return balance.value() >= amount.value();
     }
 
 }
