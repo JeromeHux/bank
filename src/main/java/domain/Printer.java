@@ -1,17 +1,14 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Printer {
     static final String HEADER = "operation | date | amount | balance";
 
     String print(List<HistoryLine> historyLines) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(HEADER);
-        for (HistoryLine line : historyLines) {
-            stringBuilder.append("\n");
-            stringBuilder.append(line.toString());
-        }
-        return stringBuilder.toString();
+        return historyLines.stream()
+                .map(line -> "\n" + line.toString())
+                .collect(Collectors.joining("", HEADER, ""));
     }
 }
