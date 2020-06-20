@@ -17,7 +17,7 @@ public class AccountTest {
 
         account.deposit(AMOUNT, date);
 
-        assertThat(account.balance()).isEqualTo(AMOUNT.value());
+        assertThat(account.balance()).isEqualTo(AMOUNT);
     }
 
     @Test

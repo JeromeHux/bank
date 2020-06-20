@@ -10,8 +10,8 @@ class Account {
         this.history = history;
     }
 
-    double balance() {
-        return balance.value();
+    Amount balance() {
+        return balance;
     }
 
     void deposit(Amount amount, LocalDate date) {
