@@ -28,7 +28,7 @@ public class AccountTest {
         account.deposit(AMOUNT, date);
 
         double globalAmount = initialAmount.value() + AMOUNT.value();
-        assertThat(account.balance()).isEqualTo(globalAmount);
+        assertThat(account.balance()).isEqualTo(Amount.of(globalAmount));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class AccountTest {
 
         account.deposit(NEGATIVE_AMOUNT, date);
 
-        assertThat(account.balance()).isEqualTo(initialAmount.value());
+        assertThat(account.balance()).isEqualTo(initialAmount);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class AccountTest {
         account.withdrawal(AMOUNT, date);
 
         double globalAmount = initialAmount.value() - AMOUNT.value();
-        assertThat(account.balance()).isEqualTo(globalAmount);
+        assertThat(account.balance()).isEqualTo(Amount.of(globalAmount));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class AccountTest {
 
         account.withdrawal(AMOUNT, date);
 
-        assertThat(account.balance()).isEqualTo(initialAmount.value());
+        assertThat(account.balance()).isEqualTo(initialAmount);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class AccountTest {
 
         account.withdrawal(NEGATIVE_AMOUNT, date);
 
-        assertThat(account.balance()).isEqualTo(initialAmount.value());
+        assertThat(account.balance()).isEqualTo(initialAmount);
     }
 
     private Account emptyAccount() {
