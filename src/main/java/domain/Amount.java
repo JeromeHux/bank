@@ -37,4 +37,12 @@ class Amount {
     boolean hasEnoughMoney(Amount amount) {
         return value() >= amount.value();
     }
+
+    double plus(Amount amount) {
+        return value() + amount.value();
+    }
+
+    double minus(Amount amount) {
+        return value() - amount.value();
+    }
 }
