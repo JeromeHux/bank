@@ -10,7 +10,7 @@ class Printer {
         stringBuilder.append(HEADER);
         for (HistoryLine line : historyLines) {
             stringBuilder.append("\n");
-            stringBuilder.append(line.printLine());
+            stringBuilder.append(line.toString());
         }
         return stringBuilder.toString();
     }

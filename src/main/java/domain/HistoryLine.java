@@ -11,7 +11,8 @@ public class HistoryLine {
         this.balance = balance;
     }
 
-    String printLine() {
+    @Override
+    public String toString() {
         return operation.toString() + " | " + balance.value();
     }
 
