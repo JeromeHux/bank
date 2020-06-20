@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-class Amount {
+final class Amount {
     private final double value;
 
     Amount(double value) {
@@ -38,11 +38,11 @@ class Amount {
         return value() >= amount.value();
     }
 
-    double plus(Amount amount) {
-        return value() + amount.value();
+    Amount minus(Amount amount) {
+        return of((value() - amount.value()));
     }
 
-    double minus(Amount amount) {
-        return value() - amount.value();
+    Amount plus(Amount amount) {
+        return of((value() + amount.value()));
     }
 }

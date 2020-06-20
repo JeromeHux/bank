@@ -27,7 +27,7 @@ public class AccountTest {
 
         account.deposit(AMOUNT, date);
 
-        assertThat(account.balance()).isEqualTo(Amount.of(initialAmount.plus(AMOUNT)));
+        assertThat(account.balance()).isEqualTo(Amount.of(initialAmount.value() + AMOUNT.value()));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AccountTest {
 
         account.withdrawal(AMOUNT, date);
 
-        assertThat(account.balance()).isEqualTo(Amount.of(initialAmount.minus(AMOUNT)));
+        assertThat(account.balance()).isEqualTo(Amount.of(initialAmount.value() - AMOUNT.value()));
     }
 
     @Test
