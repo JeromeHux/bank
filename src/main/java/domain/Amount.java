@@ -29,4 +29,8 @@ class Amount {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    boolean isPositive() {
+        return value() > 0;
+    }
 }
